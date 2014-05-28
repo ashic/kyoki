@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Logging;
 using Topshelf;
+using Topshelf.Common.Logging;
 
 namespace Till
 {
@@ -25,26 +25,9 @@ namespace Till
                 x.SetDescription("Till");
                 x.SetDisplayName("Till");
                 x.SetServiceName("Till");
+                x.UseCommonLogging();
+                
             });
-        }
-    }
-
-    public class TillService
-    {
-        private static readonly ILog Log = LogManager.GetCurrentClassLogger();
-        public TillService()
-        {
-            
-        }
-
-        public void Start()
-        {
-            
-        }
-
-        public void Stop()
-        {
-            
         }
     }
 }

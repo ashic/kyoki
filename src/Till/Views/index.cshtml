@@ -1,0 +1,78 @@
+﻿@using System.Linq
+@using Till.Core
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IEnumerable<Till.Core.OrderViewEntry>>
+@{ var formData = (OrderForm) ViewBag.FormData;}
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Orders placed</title>
+</head>
+<body>
+    <h1>Placed Orders</h1>
+    <p>
+        @if (!Model.Any())
+        {
+            <h2>No orders have been placed.</h2>
+        }
+        else
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Customer</th>
+                        <th>OrderTime</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.OrderId</td>
+                            <td>@order.Email</td>
+                            <td>@order.OrderTime.ToString("dd-MM-yyyy hh:mm:ss")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </p>
+    <hr/>
+    <h2>Place New Order</h2>
+    <form method="POST">
+        <fieldset>
+            <input type="hidden" name="orderId" value="@formData.OrderId"/>
+            <table>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" name="email" value="@formData.Email" /></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" name="address" value="@formData.Address" /></td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td><input type="text" name="price" value="@formData.Price" /></td>
+                </tr>
+                <tr>
+                    <td>Currency</td>
+                    <td><input type="text" name="currency" value="@formData.Currency" /></td>
+                </tr>
+                <tr>
+                    <td>Item</td>
+                    <td><input type="text" name="item" value="@formData.Item" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Create Order"/></td>
+                </tr>
+            </table>
+        </fieldset>    
+    </form>
+
+</body>
+</html>
