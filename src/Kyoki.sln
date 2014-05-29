@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Payment", "2. Payment", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments", "Payments\Payments.csproj", "{C92A4FD5-C49A-40A5-B18C-1246366375E6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Fraud", "3. Fraud", "{45888EEE-00F5-4318-8748-0DBF39BB97AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fraud", "Fraud\Fraud.csproj", "{CCB72953-1E00-46E4-A61B-BED86AA34B6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,10 @@ Global
 		{C92A4FD5-C49A-40A5-B18C-1246366375E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C92A4FD5-C49A-40A5-B18C-1246366375E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C92A4FD5-C49A-40A5-B18C-1246366375E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB72953-1E00-46E4-A61B-BED86AA34B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB72953-1E00-46E4-A61B-BED86AA34B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB72953-1E00-46E4-A61B-BED86AA34B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB72953-1E00-46E4-A61B-BED86AA34B6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +40,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4CFD5768-3D7D-4E91-AA24-17002D68FE5B} = {68CDC62F-FB52-453A-BD4D-24D8AEA64707}
 		{C92A4FD5-C49A-40A5-B18C-1246366375E6} = {9454783B-4977-4726-AF05-946E68BFF1BF}
+		{CCB72953-1E00-46E4-A61B-BED86AA34B6B} = {45888EEE-00F5-4318-8748-0DBF39BB97AA}
 	EndGlobalSection
 EndGlobal

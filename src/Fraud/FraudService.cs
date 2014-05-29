@@ -1,9 +1,9 @@
 ﻿using System;
 using Nancy.Hosting.Self;
 
-namespace Payments
+namespace Fraud
 {
-    public class PaymentsService
+    public class FraudService
     {
         private NancyHost _nancy;
 
@@ -14,7 +14,7 @@ namespace Payments
                 RewriteLocalhost = false
             };
 
-            _nancy = new NancyHost(config, new Uri("http://localhost:8861/"));
+            _nancy = new NancyHost(config, new Uri("http://localhost:8862/"));
             _nancy.Start();
 
         }

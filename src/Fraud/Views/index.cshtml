@@ -1,0 +1,78 @@
+﻿@using System.Linq
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IEnumerable<Fraud.Core.FraudCheckResultViewModel>>
+<!DOCTYPE html>
+
+
+@{
+    var passed = Model.Where(x => x.Status == "Passed").ToArray();
+    var failed = Model.Where(x => x.Status == "Failed").ToArray();
+}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Payments</h1>
+
+    <h2>Processed</h2>
+    @if (passed.Length == 0)
+    {
+        <p>No orders have passed fraud check.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Email</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in passed)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.Email</td>
+                        <td>@order.Score</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <hr />
+
+    <h2>Failed</h2>
+    @if (failed.Length == 0)
+    {
+        <p>No refunds have been made.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Email</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in failed)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.Email</td>
+                        <td>@order.Score</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</body>
+</html>
