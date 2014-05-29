@@ -1,0 +1,44 @@
+﻿@using System.Linq
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IEnumerable<Dispatch.Core.DispatchViewModel>>
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Dispatch</h1>
+
+    <h2>Processed</h2>
+    @if (!Model.Any())
+    {
+        <p>No order has been dispatched.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Email</th>
+                    <th>Dispatch Time</th>
+                    <th>Shipping Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.Email</td>
+                        <td>@order.DispatchTime.ToString("dd-MM-yyyy hh:mm:ss")</td>
+                        <td>@order.ShippingAddress</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</body>
+</html>
