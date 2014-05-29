@@ -23,7 +23,7 @@ namespace Payments.Boundary
 
                     var jo = JObject.Parse(content);
 
-                    if (jo["metadata"]["event"].Value<string>() == "order-placed")
+                    if (jo["metadata"]["command"].Value<string>() == "pay-order")
                     {
                         Log.Info("Got a request");
                         var order = new OrderInfo(jo["data"].ToString(Formatting.Indented));

@@ -38,8 +38,8 @@ namespace Till.Boundary
 
             var body = payload.ToString(Formatting.Indented);
 
-            var client = new RestClient("http://localhost:8861");
-            var request = new RestRequest("order-payment/", Method.POST);
+            var client = new RestClient("http://localhost:8864");
+            var request = new RestRequest("/", Method.POST);
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             client.ExecuteAsync(request, (_,__) => { });
 

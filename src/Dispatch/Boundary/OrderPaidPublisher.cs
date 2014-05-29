@@ -23,7 +23,7 @@ namespace Dispatch.Boundary
             var body = payload.ToString(Formatting.Indented);
 
             var client = new RestClient("http://localhost:8864");
-            var request = new RestRequest("complete-order/", Method.POST);
+            var request = new RestRequest("/", Method.POST);
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             client.ExecuteAsync(request, (_, __) => { });
 
