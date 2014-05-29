@@ -13,8 +13,14 @@ namespace Till
         {
             Get["/"] = _ =>
             {
-                var model = storage.GetAll();
+                var model = storage.GetAll().ToArray();
                 var orderForm = new OrderForm {OrderId = Guid.NewGuid()};
+                orderForm.Currency = "GBP";
+                orderForm.Email = "john@example.com";
+                orderForm.Address = "123 XYZ, FOO BAR";
+                orderForm.Item = "PinkPoney123";
+                orderForm.Price = 25M;
+                
                 ViewBag.FormData = orderForm;
 
                 return Negotiate.WithModel(model)

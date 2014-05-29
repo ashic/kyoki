@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using Nancy.Hosting.Self;
 
-namespace Till
+namespace Payments
 {
-    public class TillService
+    public class PaymentsService
     {
         private NancyHost _nancy;
 
@@ -14,13 +14,14 @@ namespace Till
                 RewriteLocalhost = false
             };
 
-            _nancy = new NancyHost(config, new Uri("http://localhost:8860/"));
+            _nancy = new NancyHost(config, new Uri("http://localhost:8861/"));
             _nancy.Start();
+
         }
 
         public void Stop()
         {
-            _nancy.Dispose();
+            
         }
     }
 }

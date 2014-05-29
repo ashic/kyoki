@@ -17,25 +17,31 @@ namespace Till.Boundary
         {
             var payload = new JObject();
 
-            payload["event"] = "order-placed";
-            payload["orderId"] = e.Order.OrderId;
-            payload["paymentDetails"] = new JObject();
-            payload["paymentDetails"]["price"] = e.Order.Price;
-            payload["paymentDetails"]["currency"] = e.Order.Currency;
-            payload["paymentDetails"]["address"] = e.Order.Address;
-            payload["customerDetails"] = new JObject();
-            payload["customerDetails"]["email"] = e.Order.Email;
-            payload["customerDetails"]["address"] = e.Order.Address;
-            payload["itemDetails"] = new JObject();
-            payload["itemDetails"]["item"] = e.Order.Item;
-            payload["itemDetails"]["price"] = e.Order.Price;
+            var data = new JObject();
+            data["orderId"] = e.Order.OrderId;
+            data["paymentDetails"] = new JObject();
+            data["paymentDetails"]["price"] = e.Order.Price;
+            data["paymentDetails"]["currency"] = e.Order.Currency;
+            data["paymentDetails"]["address"] = e.Order.Address;
+            data["customerDetails"] = new JObject();
+            data["customerDetails"]["email"] = e.Order.Email;
+            data["customerDetails"]["address"] = e.Order.Address;
+            data["itemDetails"] = new JObject();
+            data["itemDetails"]["item"] = e.Order.Item;
+            data["itemDetails"]["price"] = e.Order.Price;
+
+            var metadata = new JObject();
+            metadata["event"] = "order-placed";
+
+            payload["metadata"] = metadata;
+            payload["data"] = data;
 
             var body = payload.ToString(Formatting.Indented);
 
-            var client = new RestClient("http://localhost:8051");
-            var request = new RestRequest("/order-payment", Method.POST);
-            request.AddBody(body);
-            client.Execute(request);
+            var client = new RestClient("http://localhost:8861");
+            var request = new RestRequest("order-payment/", Method.POST);
+            request.AddParameter("application/json", body, ParameterType.RequestBody);
+            client.ExecuteAsync(request, (_,__) => { });
 
             Log.Info(payload.ToString(Formatting.Indented));
         }

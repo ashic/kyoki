@@ -1,0 +1,82 @@
+﻿@using System.Linq
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IEnumerable<Payments.Core.PaymentsViewModel>>
+<!DOCTYPE html>
+
+
+@{
+    var processed = Model.Where(x => x.Status == "Paid").ToArray();
+    var refunded = Model.Where(x => x.Status == "Refunded").ToArray();
+}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Payments</h1>
+    
+    <h2>Processed</h2>
+    @if (processed.Length == 0)
+    {
+        <p>No payments have been processed.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Value</th>
+                    <th>Payment Reference</th>
+                    <th>Provider</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in processed)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.Amount @order.Currency</td>
+                        <td>@order.PaymentReference</td>
+                        <td>@order.Provider</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    
+    <hr/>
+    
+    <h2>Refunded</h2>
+    @if (refunded.Length == 0)
+    {
+        <p>No refunds have been made.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Value</th>
+                    <th>Payment Reference</th>
+                    <th>Provider</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in refunded)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.Amount @order.Currency</td>
+                        <td>@order.PaymentReference</td>
+                        <td>@order.Provider</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</body>
+</html>
