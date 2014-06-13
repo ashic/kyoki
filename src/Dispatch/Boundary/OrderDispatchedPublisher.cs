@@ -1,16 +1,16 @@
 ﻿using Common.Logging;
-using Fraud.Core;
+using Dispatch.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
-namespace Fraud.Boundary
+namespace Dispatch.Boundary
 {
-    public class OrderPassedFraudPublisher
+    public class OrderDispatchedPublisher
     {
         private static readonly ILog Log = LogManager.GetCurrentClassLogger();
 
-        public void Handle(OrderPassedFraudCheckEvent e)
+        public void Handle(OrderDispatchedEvent e)
         {
             var payload = new JObject();
 
@@ -35,7 +35,7 @@ namespace Fraud.Boundary
             if (todo.Count == 0)
             {
                 Log.InfoFormat("Order processing complete.");
-                return; 
+                return;
             }
 
             var next = todo.First.Value<string>();

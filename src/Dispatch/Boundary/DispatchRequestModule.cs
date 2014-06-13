@@ -20,7 +20,7 @@ namespace Dispatch.Boundary
 
                     var jo = JObject.Parse(content);
 
-                    if (jo["metadata"]["command"].Value<string>() == "dispatch-order")
+                    //if (jo["metadata"]["command"].Value<string>() == "dispatch-order")
                     {
                         Log.Info("Got a request");
                         var order = new OrderInfo(jo["data"].ToString(Formatting.Indented));

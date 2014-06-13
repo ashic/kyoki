@@ -30,20 +30,43 @@ namespace Till.Boundary
             data["itemDetails"]["item"] = e.Order.Item;
             data["itemDetails"]["price"] = e.Order.Price;
 
-            var metadata = new JObject();
-            metadata["event"] = "order-placed";
-
-            payload["metadata"] = metadata;
             payload["data"] = data;
+            payload["data"]["routingSlip"] = OrderRouter.GetRoutingSlip();
+
+            sendToNextStep(payload);
+
+            Log.Info(payload.ToString(Formatting.Indented));
+        }
+
+        private static void sendToNextStep(JObject payload)
+        {
+            var todo = (JArray)payload["data"]["routingSlip"]["todo"] ;
+            
+            if(todo.Count == 0)
+                return;
+
+            var next = todo.First.Value<string>();
 
             var body = payload.ToString(Formatting.Indented);
 
-            var client = new RestClient("http://localhost:8864");
+            var client = new RestClient(next);
             var request = new RestRequest("/", Method.POST);
             request.AddParameter("application/json", body, ParameterType.RequestBody);
-            client.ExecuteAsync(request, (_,__) => { });
+            client.ExecuteAsync(request, (_, __) => { });
+        }
+    }
 
-            Log.Info(payload.ToString(Formatting.Indented));
+    public class OrderRouter
+    {
+        public static JObject GetRoutingSlip()
+        {
+            var jo = new JObject();
+            object[] todoSteps = {"http://localhost:8861/order-payment", "http://localhost:8862/fraud-check", "http://localhost:8863/dispatch-order"};
+            jo["todo"] = new JArray(todoSteps);
+            jo["done"] = new JArray();
+            jo["inFailure"] = false;
+
+            return jo;
         }
     }
 }

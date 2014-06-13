@@ -20,7 +20,7 @@ namespace Fraud.Boundary
 
                     var jo = JObject.Parse(content);
 
-                    if (jo["metadata"]["command"].Value<string>() == "fraud-check-order")
+                    //if (jo["metadata"]["command"].Value<string>() == "fraud-check-order")
                     {
                         Log.Info("Got a request");
                         var order = new OrderInfo(jo["data"].ToString(Formatting.Indented));

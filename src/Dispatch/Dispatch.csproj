@@ -87,7 +87,7 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Boundary\DispatchRequestModule.cs" />
-    <Compile Include="Boundary\OrderPaidPublisher.cs" />
+    <Compile Include="Boundary\OrderDispatchedPublisher.cs" />
     <Compile Include="Core\DispatchOrderCommand.cs" />
     <Compile Include="Core\DispatchApplicationService.cs" />
     <Compile Include="Core\DispatchViewModel.cs" />

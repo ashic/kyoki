@@ -12,7 +12,7 @@ namespace Dispatch
             base.ConfigureApplicationContainer(container);
             container.Register<DispatchStorage>().AsSingleton();
 
-            var publisher = new OrderPassedFraudPublisher();
+            var publisher = new OrderDispatchedPublisher();
             var svc = new DispatchApplicationService(container.Resolve<DispatchStorage>(), publisher.Handle);
             container.Register(svc);
         }
